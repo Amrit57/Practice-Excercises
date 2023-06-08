@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Favorite fruit start</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <form>
+        <div>
+
+            <label for="email">Enter your email*</label>
+            <input type="email" name="mail" id="mail" required>
+        </div>
+
+        <div>
+            <label for="password">New Password*</label>
+            <input type="password" id="password" minlength="8" required ">
+            <span class=" password error " aria-live=" polite"></span>
+        </div>
+
+        <div>
+            <label for="password">Confirm Password*</label>
+            <input type="password" id="confirm-password" required>
+            <span class="password-match error" aria-live="polite"></span>
+        </div>
+
+
+        <fieldset>
+            <legend>Country Information</legend>
+
+            <Label for="country"> Choose country: </Label>
+            <select name="country" id="country">
+                <option value="nepal">Nepal</option>
+                <option value="china">China</option>
+                <option value="india">India</option>
+                <option value="bhutan">Bhutan</option>
+            </select>
+            <br>
+            <label for="zip"> Zip Code* </label>
+            <input type="text" id="zip">
+        </fieldset>
+        <button>Submit</button>
+    </form>
+
+</body>
+
+
+</html>

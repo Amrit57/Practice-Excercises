@@ -1,0 +1,1 @@
+This is my basic folder to practice simple exercises/activities, besides the huge projects.
