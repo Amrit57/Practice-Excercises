@@ -1,54 +1,70 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>Favorite fruit start</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Searh Gifs</title>
+    <style>
+        .container {
+            margin: 20px auto;
+            width: 700px;
+            display: flex;
+            justify-items: center;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+    </style>
 </head>
 
 <body>
-
-    <form>
-        <div>
-
-            <label for="email">Enter your email*</label>
-            <input type="email" name="mail" id="mail" required>
+    <div class="container">
+        <h1>Search Gifs</h1>
+        <div class="search">
+            <input type="search">
+            <button id="searchBtn">Search</button>
         </div>
-
+        <button id="nextGif">Next</button>
         <div>
-            <label for="password">New Password*</label>
-            <input type="password" id="password" minlength="8" required ">
-            <span class=" password error " aria-live=" polite"></span>
+            <img height="400px" width="400px"
+                src="https://media1.giphy.com/media/2kXLNQypdX9O1A3zxX/giphy.gif?cid=44be7561b2r78chuj1o00mhr2m64r7csogfndg1ykh0wee82&ep=v1_gifs_translate&rid=giphy.gif&ct=g"
+                alt="">
         </div>
+    </div>
+    <script>
+        const img = document.querySelector('img');
+        const nextBtn = document.querySelector('#nextGif');
+        const searchInput = document.querySelector('input');
+        const searchBtn = document.querySelector('#searchBtn')
 
-        <div>
-            <label for="password">Confirm Password*</label>
-            <input type="password" id="confirm-password" required>
-            <span class="password-match error" aria-live="polite"></span>
-        </div>
+        searchBtn.addEventListener('click', searchGifs);
+        nextBtn.addEventListener('click', getGifs);
 
 
-        <fieldset>
-            <legend>Country Information</legend>
+        function searchGifs() {
+            let keyword = searchInput.value;
+            console.log(keyword)
+            fetch(`https://api.giphy.com/v1/gifs/translate?api_key=8N1fYQmX5tXKeMjuzP02jyCqr1H4pbH2&s=${keyword}`, { mode: "cors" })
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (response) {
+                    console.log(response.data.images.original.url)
+                    let result = response.data.images.original.url;
+                    img.src = result;
+                })
+                .catch(function (error) {
+                    img.textContent = "Gif Not Found, Try other names!"
+                    console.log("haha")
+                })
+        }
 
-            <Label for="country"> Choose country: </Label>
-            <select name="country" id="country">
-                <option value="nepal">Nepal</option>
-                <option value="china">China</option>
-                <option value="india">India</option>
-                <option value="bhutan">Bhutan</option>
-            </select>
-            <br>
-            <label for="zip"> Zip Code* </label>
-            <input type="text" id="zip">
-        </fieldset>
-        <button>Submit</button>
-    </form>
-
+        function getGifs() {
+            searchGifs()
+        }
+    </script>
 </body>
-
 
 </html>
